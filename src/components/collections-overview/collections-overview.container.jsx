@@ -6,25 +6,29 @@ import CollectionsOverview from './collections-overview.component';
 import Spinner from '../spinner/spinner.component';
 
 const GET_COLLECTIONS = gql`
-  {
-    collections {
+  query categories {
+  categories {
+    items {
       id
       title
-      items {
-        id
-        name
-        price
-        imageUrl
+      products {
+        items {
+          id
+          title
+          price
+          imageUrl
+        }
       }
     }
   }
+}
 `;
 
 const CollectionsOverviewContainer = () => (
   <Query query={GET_COLLECTIONS}>
     {({ loading, data }) => {
       if (loading) return <Spinner />;
-      return <CollectionsOverview collections={data.collections} />;
+      return <CollectionsOverview collections={data.categories.items} />;
     }}
   </Query>
 );

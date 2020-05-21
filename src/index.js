@@ -16,7 +16,7 @@ import { resolvers, typeDefs } from './graphql/resolvers';
 import { default as data } from './graphql/initial-data';
 
 const httpLink = createHttpLink({
-  uri: 'https://crwn-clothing.com'
+  uri: 'http://d8.docksal/react'
 });
 
 const cache = new InMemoryCache();

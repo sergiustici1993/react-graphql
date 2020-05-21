@@ -6,28 +6,29 @@ import CollectionPage from './collection.component';
 import Spinner from '../../components/spinner/spinner.component';
 
 const GET_COLLECTION_BY_TITLE = gql`
-  query getCollectionsByTitle($title: String!) {
-    getCollectionsByTitle(title: $title) {
-      id
-      title
+query getCategoriesByTitle($title: String!) {
+  getCategoriesByTitle(title: $title) {
+    id
+    title
+    products {
       items {
         id
-        name
+        title
         price
         imageUrl
       }
     }
   }
-`;
+}`;
 
 const CollectionPageContainer = ({ match }) => (
   <Query
     query={GET_COLLECTION_BY_TITLE}
-    variables={{ title: match.params.collectionId }}
+    variables={{title: match.params.collectionId}}
   >
-    {({ loading, data: { getCollectionsByTitle } }) => {
-      if (loading) return <Spinner />;
-      return <CollectionPage collection={getCollectionsByTitle} />;
+    {({loading, data: {getCategoriesByTitle}}) => {
+      if (loading) return <Spinner/>;
+      return <CollectionPage collection={getCategoriesByTitle}/>;
     }}
   </Query>
 );
