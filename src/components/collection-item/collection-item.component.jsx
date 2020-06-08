@@ -1,11 +1,10 @@
 import React from 'react';
-
-import CustomButton from '../custom-button/custom-button.component';
+import { Link } from 'react-router-dom';
 
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ item, addItem }) => {
-  const { title: name, price, imageUrl } = item;
+const CollectionItem = ({ item }) => {
+  const { title: name, price, imageUrl, id } = item;
 
   return (
     <div className='collection-item'>
@@ -19,9 +18,9 @@ const CollectionItem = ({ item, addItem }) => {
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
       </div>
-      <CustomButton onClick={() => addItem(item)} inverted>
-        Add to cart
-      </CustomButton>
+      <Link className='custom-button' to={`/product/${ id }`}>
+        VIEW PRODUCT
+      </Link>
     </div>
   );
 };
